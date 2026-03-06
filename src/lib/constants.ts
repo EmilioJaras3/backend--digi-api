@@ -4,7 +4,7 @@ export const API_CONFIG = {
 } as const;
 
 export const ERROR_MESSAGES = {
-  FETCH_DIGIMONS: 'Failed to fetch digimons data from external API',
-  FETCH_DIGIMON: (name: string) => `Failed to fetch ${name} data`,
-  FETCH_LEVEL: (level: string) => `Failed to fetch digimons for level ${level}`,
+  FETCH_DIGIMONS: 'Error al obtener datos de Digimons de la API externa',
+  FETCH_DIGIMON: (name: string) => `Error al obtener datos de ${name}`,
+  FETCH_LEVEL: (level: string) => `Error al obtener Digimons del nivel ${level}`,
 } as const;
