@@ -1,11 +1,10 @@
 import axios from 'axios';
-
-const DIGIMON_API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://digimon-api.vercel.app/api';
+import { API_CONFIG, ERROR_MESSAGES } from './constants';
 
 class DigiApiClient {
     private client = axios.create({
-        baseURL: DIGIMON_API_BASE,
-        timeout: 10000,
+        baseURL: API_CONFIG.BASE_URL,
+        timeout: API_CONFIG.TIMEOUT,
     });
 
     async getDigimons() {
@@ -14,7 +13,7 @@ class DigiApiClient {
             return { digimons: response.data, timestamp: new Date() };
         } catch (error) {
             console.error('Error fetching digimons:', error);
-            throw new Error('Failed to fetch digimons data from external API');
+            throw new Error(ERROR_MESSAGES.FETCH_DIGIMONS);
         }
     }
 
@@ -25,7 +24,7 @@ class DigiApiClient {
             return { digimon: Array.isArray(data) ? data[0] : data, timestamp: new Date() };
         } catch (error) {
             console.error(`Error fetching digimon ${name}:`, error);
-            throw new Error(`Failed to fetch ${name} data`);
+            throw new Error(ERROR_MESSAGES.FETCH_DIGIMON(name));
         }
     }
 
@@ -35,7 +34,7 @@ class DigiApiClient {
             return { digimons: response.data, timestamp: new Date() };
         } catch (error) {
             console.error(`Error fetching digimons for level ${level}:`, error);
-            throw new Error(`Failed to fetch digimons for level ${level}`);
+            throw new Error(ERROR_MESSAGES.FETCH_LEVEL(level));
         }
     }
 }
