@@ -9,10 +9,10 @@ export async function GET(
     const corsResponse = corsMiddleware(request);
     if (corsResponse) return corsResponse;
 
-    const id = params.id;
+    const name = params.id;
 
     try {
-        const data = await digiApiClient.getCoinById(id);
+        const data = await digiApiClient.getDigimonByName(name);
         return jsonResponse(data);
     } catch (error: any) {
         return jsonResponse({ error: error.message }, 500);

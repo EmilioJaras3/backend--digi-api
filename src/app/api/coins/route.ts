@@ -6,11 +6,8 @@ export async function GET(request: NextRequest) {
     const corsResponse = corsMiddleware(request);
     if (corsResponse) return corsResponse;
 
-    const searchParams = request.nextUrl.searchParams;
-    const limit = parseInt(searchParams.get('limit') || '10');
-
     try {
-        const data = await digiApiClient.getCoins(limit);
+        const data = await digiApiClient.getDigimons();
         return jsonResponse(data);
     } catch (error: any) {
         return jsonResponse({ error: error.message }, 500);

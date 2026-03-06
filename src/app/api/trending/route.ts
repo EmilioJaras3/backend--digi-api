@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
     if (corsResponse) return corsResponse;
 
     try {
-        const data = await digiApiClient.getTrendingCoins();
+        const data = await digiApiClient.getDigimonsByLevel('Mega');
         return jsonResponse(data);
     } catch (error: any) {
         return jsonResponse({ error: error.message }, 500);
